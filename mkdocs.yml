@@ -1,0 +1,62 @@
+site_name: Template
+
+copyright: >
+  Copyright &copy; <script>document.write(new Date().getFullYear())</script> Mateusz Urbanek
+
+dev_addr: "0.0.0.0:8000"
+
+repo_url: https://github.com/doomshrine/template
+
+plugins:
+  - search
+  - swagger-ui-tag
+  - macros:
+      module_name: docs/macros
+
+theme:
+  name: material
+  language: en
+
+  # add overrides dir to the theme search path
+  custom_dir: docs/overrides
+
+  features:
+    - navigation.tabs
+    - header.autohide
+    - search.suggest
+    - search.highlight
+
+  # TODO: Add logo and favicon
+  # logo: assets/images/logo.svg
+  # favicon: assets/images/favicon.svg
+  
+  palette:
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: pink
+      accent: pink
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: pink
+      accent: pink
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+
+extra:
+  version:
+    provider: mike
+
+#   consent:
+#     title: Cookie consent
+#     description: >- 
+#       We use cookies to recognize your repeated visits and preferences, as well
+#       as to measure the effectiveness of our documentation and whether users
+#       find what they're searching for. With your consent, you're helping us to
+#       make our documentation better.
