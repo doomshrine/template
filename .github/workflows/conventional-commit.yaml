@@ -1,9 +1,16 @@
+# This workflow validate commit messages.
+# It is supposed to be run only when:
+#   - the push is done to the main;
+#   OR
+#   - pull request is open to the main;
+
 name: Lint commit messages
+
 on:
   push:
-    branches: [ main ]
+    branches: [ 'main' ]
   pull_request:
-    branches: [ main ]
+    branches: [ 'main' ]
 
 jobs:
   commitlint:
