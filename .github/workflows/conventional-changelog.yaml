@@ -1,0 +1,34 @@
+# This workflow will build and publish a new changelog.
+# It is supposed to be run only when tag is pushed.
+# Runs only for full releases:
+#   https://regex101.com/r/oZihYi/1
+
+name: Conventional changelog
+
+on:
+  push:
+    tags:
+      - ^(v)(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$
+
+jobs:
+  deploy:
+    name: Generate changelog and publish a release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Update CHANGELOG
+        id: changelog
+        uses: requarks/changelog-action@v1
+        with:
+          token: ${{ github.token }}
+          tag: ${{ github.ref_name }}
+      - name: Create Release
+        uses: ncipollo/release-action@v1.12.0
+        with:
+          allowUpdates: true
+          draft: false
+          makeLatest: true
+          name: ${{ github.ref_name }}
+          body: ${{ steps.changelog.outputs.changes }}
+          token: ${{ github.token }}
